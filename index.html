@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parking as a Product</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Parking as a Product (PaaS)</h1>
+    <p>Smart Parking Management & Reservation System</p>
+  </header>
+
+  <div class="container">
+
+    <div class="box">
+      <h2>1. Select City & Vehicle</h2>
+      <div class="row">
+        <div>
+          <label>City:</label>
+          <select id="city">
+            <option>Delhi</option>
+            <option>Mumbai</option>
+            <option>Bangalore</option>
+          </select>
+        </div>
+        <div>
+          <label>Vehicle Type:</label>
+          <select id="vehicle" onchange="updatePrice()">
+            <option value="20">Two-Wheeler (₹20/hr)</option>
+            <option value="40">Hatchback (₹40/hr)</option>
+            <option value="50" selected>Sedan (₹50/hr)</option>
+            <option value="70">SUV (₹70/hr)</option>
+          </select>
+        </div>
+        <div>
+          <label>Duration (Hours):</label>
+          <input type="number" id="hours" value="2" min="1" onchange="updatePrice()">
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>2. Select Parking Slot</h2>
+      <div class="row" style="margin-bottom: 10px;">
+        <button type="button" onclick="setFloor(1)">Floor 1</button>
+        <button type="button" onclick="setFloor(2)">Floor 2</button>
+        <span id="floor-label" style="margin-left: 15px; font-weight: bold;">Showing: Floor 1</span>
+      </div>
+      <div id="slot-grid" class="slot-grid"></div>
+      <p style="margin-top: 10px;">Selected Slot: <strong id="selected-slot-text">None</strong></p>
+    </div>
+
+    <div class="box">
+      <h2>3. Customer Details & Payment</h2>
+      <div class="row">
+        <div>
+          <label>Name:</label>
+          <input type="text" id="cust-name" placeholder="Enter name">
+        </div>
+        <div>
+          <label>Vehicle Number:</label>
+          <input type="text" id="veh-num" placeholder="e.g. DL 01 AB 1234">
+        </div>
+        <div>
+          <label>Payment Mode:</label>
+          <select id="pay-mode">
+            <option>UPI</option>
+            <option>Debit Card</option>
+            <option>Net Banking</option>
+          </select>
+        </div>
+      </div>
+      <p style="margin: 15px 0;">Total Amount: <strong>₹<span id="price-text">100</span></strong></p>
+      <button type="button" onclick="bookParking()">Confirm & Pay</button>
+      
+      <div id="receipt" class="receipt" style="display: none;">
+        <h3>Booking Receipt</h3>
+        <p>Booking ID: <strong id="rec-id"></strong></p>
+        <p>Customer: <span id="rec-name"></span></p>
+        <p>Vehicle: <span id="rec-veh"></span></p>
+        <p>Slot: <strong id="rec-slot"></strong></p>
+        <p>Status: <span style="color: green; font-weight: bold;">PAID</span></p>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>4. Parking Operator Dashboard</h2>
+      <div class="row" style="margin-bottom: 15px;">
+        <div class="stat">Total Slots: <b id="stat-total">12</b></div>
+        <div class="stat">Occupied: <b id="stat-occ" style="color: red;">0</b></div>
+        <div class="stat">Available: <b id="stat-avail" style="color: green;">12</b></div>
+      </div>
+      <table id="booking-table">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Name</th>
+            <th>Vehicle</th>
+            <th>Slot</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
