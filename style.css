@@ -37,6 +37,11 @@ header p {
   margin-bottom: 20px;
 }
 
+.login-box {
+  max-width: 360px;
+  margin: 40px auto;
+}
+
 .box h2 {
   margin-top: 0;
   font-size: 18px;

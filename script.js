@@ -27,6 +27,23 @@ window.onload = function() {
   updateDashboard();
 };
 
+function checkLogin() {
+  var u = document.getElementById("login-uid").value;
+  var p = document.getElementById("login-pwd").value;
+
+  if (u === "12611969" && p === "sankalpayushakshit") {
+    document.getElementById("login-box").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+  } else {
+    alert("Invalid UID or Password!");
+  }
+}
+
+function logout() {
+  document.getElementById("login-box").style.display = "block";
+  document.getElementById("main-content").style.display = "none";
+}
+
 function setFloor(floorNum) {
   currentFloor = floorNum;
   selectedSlot = "";
